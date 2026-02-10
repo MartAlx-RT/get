@@ -22,10 +22,22 @@ counter = 0
 while True:
     if(GPIO.input(up) > 0):
         counter += 1
-    if(GPIO.input(down) < 0):
+	print(counter, dec2bin(counter))
+	time.sleep(sleep_time)
+
+    if(counter < 0 or counter > 7):
+	counter = 0
+
+    GPIO.output(leds, dec2bin(counter))
+
+    if(GPIO.input(down) > 0):
         counter -= 1
+	print(counter, dec2bin(counter))
+	time.sleep(sleep_time)
 
     if(counter < 0 or counter > 7):
         counter = 0
 
-    GPIO.output(leds, dec2bin(num))
+    GPIO.ouput(leds, dec2bin(counter))
+
+    time.sleep(sleep_time)
